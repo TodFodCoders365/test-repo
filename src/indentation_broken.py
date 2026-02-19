@@ -1,3 +1,2 @@
 def broken_indent():
-print("bad indent")
-    return 1
+    return "bad indent"
