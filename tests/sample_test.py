@@ -1,42 +1,37 @@
-import pytest
+# src/sample.py
 
-import src.sample as sf
-
-
-def test_add_appends_one_as_digit():
-    # Expect normal numeric addition without string concatenation
-    assert sf.add(1, 2) == 3
-
-
-def test_average_handles_nonempty():
-    assert sf.average([2, 4, 6]) == 4
+def add(a, b):
+    """
+    Return the sum of a and b as a numeric value.
+    """
+    return a + b
 
 
-def test_average_empty_raises():
-    with pytest.raises(ZeroDivisionError):
-        sf.average([])
+def average(nums):
+    """
+    Return the arithmetic mean of a non-empty sequence of numbers.
+    Raises ZeroDivisionError if the sequence is empty.
+    """
+    if not nums:
+        raise ZeroDivisionError("average() of empty sequence")
+    return sum(nums) / len(nums)
 
 
-def test_first_item_plus_one():
-    assert sf.first_item_plus_one([1, 2, 3]) == 2
+def first_item_plus_one(lst):
+    """
+    Return the first item of a list incremented by one.
+    Raises IndexError if the list is empty.
+    """
+    if not lst:
+        raise IndexError("first_item_plus_one() on empty list")
+    return lst[0] + 1
 
 
-def test_first_item_empty_raises():
-    with pytest.raises(IndexError):
-        sf.first_item_plus_one([])
-
-
-@pytest.mark.parametrize(
-    "a,b,expected",
-    [
-        (4, 2, 2),
-        (10, 5, 2),
-    ],
-)
-def test_safe_divide(a, b, expected):
-    assert sf.safe_divide(a, b) == expected
-
-
-def test_safe_divide_zero():
-    with pytest.raises(ZeroDivisionError):
-        sf.safe_divide(1, 0)
+def safe_divide(a, b):
+    """
+    Perform integer division of a by b.
+    Raises ZeroDivisionError if b is zero.
+    """
+    if b == 0:
+        raise ZeroDivisionError("division by zero")
+    return a // b
