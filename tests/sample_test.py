@@ -1,5 +1,4 @@
 import pytest
-
 import src.sample as sf
 
 
